@@ -31,13 +31,13 @@ namespace XmasPickVerification
         }
         static void Main(string[] args)
         {
-            DateTime christmasThisYear = new DateTime(2014, 12, 25);
-            string adultArchivePath = @"C:\Users\cgehrer\Documents\Visual Studio 2013\Projects\ChristmasPick\Archive\Adult\Archive.xml";
+            DateTime christmasThisYear = new DateTime(2018, 12, 25);
+            string adultArchivePath = @"C:\src\gehredproject\ChristmasPick\Archive\Adult\Archive.xml";
             IXMasArchivePersister adultPersister = new FileArchivePersister(adultArchivePath);
-            string kidArchivePath = @"C:\Users\cgehrer\Documents\Visual Studio 2013\Projects\ChristmasPick\Archive\Kids\Archive.xml";
+            string kidArchivePath = @"C:\src\gehredproject\ChristmasPick\Archive\Kids\Archive.xml";
             IXMasArchivePersister kidPersister = new FileArchivePersister(kidArchivePath);
            
-            IFamilyProvider familyProvider = new FileFamilyProvider(@"C:\Users\cgehrer\Documents\Visual Studio 2013\Projects\ChristmasPick\Archive\Gehred\GehredFamily.xml");
+            IFamilyProvider familyProvider = new FileFamilyProvider(@"C:\src\gehredproject\ChristmasPick\Archive\Gehred\GehredFamily.xml");
             FamilyTree gehredFamily = familyProvider.GetFamilies();
 
             XMasArchive kidArchive = kidPersister.LoadArchive();

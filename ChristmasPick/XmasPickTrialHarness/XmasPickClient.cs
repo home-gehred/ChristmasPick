@@ -10,12 +10,12 @@ namespace XmasPickTrialHarness
     {
         static void Main(string[] args)
         {
-                  DateTime christmasThisYear = new DateTime(2016, 12, 25);
-                  string adultArchivePath = @"C:\Users\gehredbo\Source\Hobby\ChristmasPick\Archive\Adult\Archive.xml";
-                  string kidArchivePath = @"C:\Users\gehredbo\Source\Hobby\ChristmasPick\Archive\Kids\Archive.xml";
+                  DateTime christmasThisYear = new DateTime(2018, 12, 25);
+                  string adultArchivePath = @"C:\src\gehredproject\ChristmasPick\Archive\Adult\Archive.xml";
+                  string kidArchivePath = @"C:\src\gehredproject\ChristmasPick\Archive\Kids\Archive.xml";
                   IXMasArchivePersister adultPersister = new FileArchivePersister(adultArchivePath);
                   IXMasArchivePersister kidPersister = new FileArchivePersister(kidArchivePath);
-                  IFamilyProvider familyProvider = new FileFamilyProvider(@"C:\Users\gehredbo\Source\Hobby\ChristmasPick\Archive\Gehred\GehredFamily.xml");
+                  IFamilyProvider familyProvider = new FileFamilyProvider(@"C:\src\gehredproject\ChristmasPick\Archive\Gehred\GehredFamily.xml");
                   // Go ahead and get family
                   FamilyTree gehredFamily = familyProvider.GetFamilies();
                   XMasArchive adultArchive = adultPersister.LoadArchive();
