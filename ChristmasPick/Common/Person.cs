@@ -26,6 +26,29 @@ namespace Common
       mId = Guid.ParseExact(guid, "D");
     }
 
+    public string FirstName
+    {
+        get
+        {
+            return mFirstName;
+        }
+    }
+    public string LastName
+    {
+        get
+        {
+            return mLastName;
+        }
+    }
+
+        public DateTime BirthDay
+        {
+            get
+            {
+                return mBirthDay;
+            }
+        }
+
     public bool IsConsideredAnAdult(DateTime dateToEvaluate)
     {
       Age personsAge = Age.CalculateAge(dateToEvaluate, mBirthDay);
@@ -65,28 +88,40 @@ namespace Common
 
     protected static bool AreEquals(Person a, Person b)
     {
-      bool areEqual = false;
+            bool areEqual = false;
 
-      if (a.mId == b.mId)
-      {
-          areEqual = true;
-      }
-      //if (string.Compare(a.mFirstName, b.mFirstName) == 0)
-      //{
-      //  if (string.Compare(a.mLastName, b.mLastName) == 0)
-      //  {
-      //    if (a.mBirthDay == b.mBirthDay)
-      //    {
-      //      areEqual = true;
-      //    }
-      //  }
-      //}
+            if (a.mId == b.mId)
+            {
+                areEqual = true;
+            }            //if (string.Compare(a.mFirstName, b.mFirstName) == 0)
+            //{
+            //  if (string.Compare(a.mLastName, b.mLastName) == 0)
+            //  {
+            //    if (a.mBirthDay == b.mBirthDay)
+            //    {
+            //      areEqual = true;
+            //    }
+            //  }
+            //}
 
-      return areEqual;
+            return areEqual;
     }
 
     public static bool operator==(Person a, Person b)
     {
+      if (object.ReferenceEquals(a, null) &&
+          object.ReferenceEquals(b, null))
+            {
+                return true;
+            }
+      else
+            {
+                if (object.ReferenceEquals(a, null) ||
+                object.ReferenceEquals(b, null))
+                {
+                    return false;
+                }
+            }
       return Person.AreEquals(a, b);
     }
 
