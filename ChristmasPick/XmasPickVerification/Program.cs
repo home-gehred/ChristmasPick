@@ -31,7 +31,7 @@ namespace XmasPickVerification
         }
         static void Main(string[] args)
         {
-            DateTime christmasThisYear = new DateTime(2018, 12, 25);
+            DateTime christmasThisYear = new DateTime(2019, 12, 25);
             string adultArchivePath = @"C:\src\gehredproject\ChristmasPick\Archive\Adult\Archive.xml";
             IXMasArchivePersister adultPersister = new FileArchivePersister(adultArchivePath);
             string kidArchivePath = @"C:\src\gehredproject\ChristmasPick\Archive\Kids\Archive.xml";

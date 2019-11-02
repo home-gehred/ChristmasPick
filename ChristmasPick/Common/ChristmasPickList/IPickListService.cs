@@ -31,7 +31,7 @@ namespace Common.ChristmasPickList
 
         public XMasPickList CreateChristmasPick(DateTime evaluationDate)
         {
-            int MaxAttemptsBeforeGivingUp = 10;
+            int MaxAttemptsBeforeGivingUp = 75;
             PersonCollection alreadyPicked = new PersonCollection();
             XMasPickList thisYearPickList = new XMasPickList(evaluationDate);
             SortPickList(this.familyList, evaluationDate);
@@ -56,7 +56,7 @@ namespace Common.ChristmasPickList
                     {
                         SortPickList(availableToBePicked, evaluationDate);
                         int tmpIndex = indexGenerator.GenerateNumberBetweenZeroAnd(availableToBePicked.Count);
-                        Person toBuyPresentFor = availableToBePicked.GetAt((tmpIndex == 0) ? tmpIndex : (tmpIndex - 1));
+                        Person toBuyPresentFor = availableToBePicked.GetAt(tmpIndex);
                         alreadyPicked.Add(toBuyPresentFor);
                         thisYearPickList.Add(new XMasPick(subject, toBuyPresentFor));
 
@@ -69,21 +69,25 @@ namespace Common.ChristmasPickList
                     }
                 }
 
-                Console.WriteLine("Verifing attempt: {0} ...", attempts);
+                // Only verify if picklist has items
+                if (thisYearPickList.IsPickListEmpty() == false)
+                {
+                    Console.WriteLine("Verifing attempt: {0} ...", attempts);
 
-                try
-                {
-                    // Throws exceptions if a person is not recieving a present.
-                    foreach (Person person in familyList)
+                    try
                     {
-                        Person recipient = thisYearPickList.GetRecipientFor(person);
+                        // Throws exceptions if a person is not recieving a present.
+                        foreach (Person person in familyList)
+                        {
+                            Person recipient = thisYearPickList.GetRecipientFor(person);
+                        }
+                        Console.WriteLine("Successfully created pick list in {0} attempts.", attempts);
+                        break;
                     }
-                    Console.WriteLine("Successfully created pick list in {0} attempts.", attempts);
-                    break;
-                }
-                catch (Exception err)
-                {
-                    Console.WriteLine("Attempt {0} failed because {1}", attempts, err.ToString());
+                    catch (Exception err)
+                    {
+                        Console.WriteLine("Attempt {0} failed because {1}", attempts, err.ToString());
+                    }
                 }
             }
 

@@ -67,6 +67,11 @@ namespace Common.ChristmasPickList
             return (date == this.mChristmasDate);
         }
 
+        public bool IsPickListEmpty()
+        {
+            return (this.mPickList.Count <= 0);
+        }
+
         public bool HasSubjectBoughtAPresentForRecipient(Person subject, Person recipient)
         {
             bool hasBeenDone = false;

@@ -10,7 +10,7 @@ namespace XmasPickTrialHarness
     {
         static void Main(string[] args)
         {
-                  DateTime christmasThisYear = new DateTime(2018, 12, 25);
+                  DateTime christmasThisYear = new DateTime(2019, 12, 25);
                   string adultArchivePath = @"C:\src\gehredproject\ChristmasPick\Archive\Adult\Archive.xml";
                   string kidArchivePath = @"C:\src\gehredproject\ChristmasPick\Archive\Kids\Archive.xml";
                   IXMasArchivePersister adultPersister = new FileArchivePersister(adultArchivePath);
@@ -24,7 +24,7 @@ namespace XmasPickTrialHarness
                   PersonCollection kidList = gehredFamily.CreateChristmasKidList(christmasThisYear);
                   PersonCollection adultList = gehredFamily.CreateChristmasAdultList(christmasThisYear);
 
-                  IPickListRuleProvider kidRules = new KidListRuleProvider(gehredFamily, kidArchive, 5);
+                  IPickListRuleProvider kidRules = new KidListRuleProvider(gehredFamily, kidArchive, 1);
                   IPickListService picker = new PickListServiceAdvanced(new RandomNumberGenerator(kidList.Count), kidRules, kidList);
                   XMasPickList kidPicklist = picker.CreateChristmasPick(christmasThisYear);
                   XMasPickListValidator validation = new XMasPickListValidator();
