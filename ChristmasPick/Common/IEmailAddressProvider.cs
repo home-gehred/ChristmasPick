@@ -79,66 +79,46 @@ namespace Common
         {
             public Key Key { get; set; }
             public string[] Emails { get; set; }
+            public bool ShouldBeContacted { get; set; }
         }
 
-        private IDictionary<Key, EmailAddress[]> emails;
+        private IDictionary<Key, ContactEntry> contacts;
         public JsonFileEmailAddressProvider(string pathToFamilyContacts)
         {
-            emails = new Dictionary<Key, EmailAddress[]>();
-            var contacts = JsonConvert.DeserializeObject<ContactEntry[]>(File.ReadAllText(pathToFamilyContacts));
-            foreach(var contact in contacts)
+            contacts = new Dictionary<Key, ContactEntry>();
+            var contactsRaw = JsonConvert.DeserializeObject<ContactEntry[]>(File.ReadAllText(pathToFamilyContacts));
+            foreach(var contact in contactsRaw)
             {
-                var contactEmails = new List<EmailAddress>();
-                foreach(var email in contact.Emails)
-                {
-                    contactEmails.Add(new EmailAddress(email));
-
-                }
-                emails.Add(contact.Key, contactEmails.ToArray());
+                contacts.Add(contact.Key, contact);
             }
         }
-        public IEnumerable<EmailAddress> GetEmailAddresses(Person x)
+
+        public bool ShouldBeContacted(Person x)
         {
             if (x == null) throw new ArgumentNullException(nameof(x));
             var key = Key.CreateFromPerson(x);
-            if (emails.ContainsKey(key))
+            if (contacts.ContainsKey(key))
             {
-                return emails[key];
+                return contacts[key].ShouldBeContacted;
             }
             throw new ApplicationException($"Cound not find {x} in contact list.");
         }
 
-        // Delete all of this just for getting started
-        //public void CreateTemplateJson(IFamilyProvider family)
-        //{
-        //    var contacts = new List<ContactEntry>();
-        //    foreach(var unit in family.GetFamilies())
-        //    {
-        //        foreach(var person in unit)
-        //        {
-        //            // Create a new key
-        //            var key = new Key()
-        //            {
-        //                FirstName = person.FirstName,
-        //                LastName = person.LastName,
-        //                Birthday = person.BirthDay
-        //            };
-        //            var emails = new string[] { "notset@junk.com" };
-        //            contacts.Add(new ContactEntry
-        //            {
-        //                Emails = emails,
-        //                Key = key
-        //            });
-        //        }
-        //    }
-        //    JsonSerializer serializer = new JsonSerializer();
-        //    serializer.Formatting = Formatting.Indented;
-        //    using (StreamWriter sw = new StreamWriter(@"C:\src\gehredproject\ChristmasPick\Archive\Gehred\GehredFamily_emails.json"))
-        //    using (JsonWriter writer = new JsonTextWriter(sw))
-        //    {
-        //        serializer.Serialize(writer, contacts);
-        //    }
-        //}
-        // End Delete
+        public IEnumerable<EmailAddress> GetEmailAddresses(Person x)
+        {
+            if (x == null) throw new ArgumentNullException(nameof(x));
+            var key = Key.CreateFromPerson(x);
+            if (contacts.ContainsKey(key))
+            {
+                var contactEmails = new List<EmailAddress>();
+                foreach (var email in contacts[key].Emails)
+                {
+                    contactEmails.Add(new EmailAddress(email));
+
+                }
+                return contactEmails;
+            }
+            throw new ApplicationException($"Cound not find {x} in contact list.");
+        }
     }
 }

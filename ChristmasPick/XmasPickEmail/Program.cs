@@ -18,6 +18,8 @@ namespace XmasPickEmail
             var plainTextMsg = $"Hello {giftMaker},\r\n\r\n As you can see there are some new changes this year!\r\n Santa's Lil' Helper is yours truly, Uncle Bob.\r\n IMPORTANT: I am changing the notification process and I expect problems.\r\nPlease, Please, Please reply to this email that you got this notification, AND send an email to bagehred@sbcglobal.net\r\nThe response is important for me to keep track of how this new notification process is working.\r\n";
             plainTextMsg += $"And as always, please notify family members you got your name for Christmas. Relay that, if they do not have a name, to get in touch with Uncle Bob.\r\n";
             plainTextMsg += "\r\n";
+            plainTextMsg += $"This maybe a duplicate, if you have responded already I apologize and disregard, otherwise get to it!\r\n";
+            plainTextMsg += "\r\n";
             plainTextMsg += $"Alright, on to the fun stuff,\r\n";
             plainTextMsg += "On the bright side, I have fixed a bug in the name picking program to make sure everyone gets a name they will find easy to make your $5 gift for.\r\n";
             plainTextMsg += "Patti had a great suggestion for donating to a charity, the discussion on that will happen on Super Saturday.The name you need to supply a gift for is located at the end of this email.\r\n";
@@ -38,7 +40,7 @@ namespace XmasPickEmail
                 PlainTextBody = plainTextMsg,
                 Name = "C",
                 NotificationType = NotifyType.Email,
-                Subject = "*IMPORTANT: Gehred Nation Christmas Pick Information*",
+                Subject = "**IMPORTANT: Gehred Nation Christmas Pick Information**",
                 ToAddress = To
             };
             return content;
@@ -53,7 +55,7 @@ namespace XmasPickEmail
             IXMasArchivePersister adultPersister = new FileArchivePersister(adultArchivePath);
             IXMasArchivePersister kidPersister = new FileArchivePersister(kidArchivePath);
             IFamilyProvider familyProvider = new FileFamilyProvider(@"C:\src\gehredproject\ChristmasPick\Archive\Gehred\GehredFamily.xml");
-            IEmailAddressProvider emailAddressProvider = new JsonFileEmailAddressProvider(@"C:\src\gehredproject\ChristmasPick\Archive\Gehred\GehredFamily_Contacts.json");
+            JsonFileEmailAddressProvider emailAddressProvider = new JsonFileEmailAddressProvider(@"C:\src\gehredproject\ChristmasPick\Archive\Gehred\GehredFamily_Contacts.json");
 
             XMasArchive adultArchive = adultPersister.LoadArchive();
             XMasArchive kidArchive = kidPersister.LoadArchive();
@@ -75,8 +77,11 @@ namespace XmasPickEmail
                         decimal giftAmount = 20.00M;
                         Person recipient = kidPickList.GetRecipientFor(person);
                         var giftMessage = string.Format(pickMsg, christmasThisYear.Year, person.ToString(), giftAmount.ToString("c"), recipient.ToString());
-                        // Using the Person object lookup email.
-                        var emailAddresses = emailAddressProvider.GetEmailAddresses(person);
+
+                        if (emailAddressProvider.ShouldBeContacted(person))
+                        {
+                            // Using the Person object lookup email.
+                            var emailAddresses = emailAddressProvider.GetEmailAddresses(person);
 
                             Console.WriteLine($"Attempting to email {person} using...");
                             foreach (var emailAddress in emailAddresses)
@@ -84,15 +89,17 @@ namespace XmasPickEmail
                                 emailCount++;
                                 var content = CreateEmailMessage(emailAddress, person, giftMessage);
                                 var testEnvelope = new Envelope(content);
-                            var emailSendStatus = emailer.Notify(testEnvelope).GetAwaiter().GetResult();
-                            if (!emailSendStatus.IsSuccess())
-                            {
-                                Console.WriteLine($"{emailAddress} Status: Error: {emailSendStatus.Message}");
+                                var emailSendStatus = emailer.Notify(testEnvelope).GetAwaiter().GetResult();
+                                if (!emailSendStatus.IsSuccess())
+                                {
+                                    Console.WriteLine($"{emailAddress} Status: Error: {emailSendStatus.Message}");
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"{emailAddress} Status: Ok");
+                                }
                             }
-                            else
-                            {
-                                Console.WriteLine($"{emailAddress} Status: Ok");
-                            }
+                            Console.WriteLine(giftMessage);
                         }
                     }
                     else
@@ -100,28 +107,31 @@ namespace XmasPickEmail
                         decimal giftAmount = 5.00M;
                         Person recipient = adultPickList.GetRecipientFor(person);
                         var giftMessage = string.Format(pickMsg, christmasThisYear.Year, person.ToString(), giftAmount.ToString("c"), recipient.ToString());
-                        // Using the Person object lookup email.
-                        var emailAddresses = emailAddressProvider.GetEmailAddresses(person);
 
-                        Console.WriteLine($"Attempting to email {person} using...");
-                        foreach (var emailAddress in emailAddresses)
+                        if (emailAddressProvider.ShouldBeContacted(person))
                         {
-                            emailCount++;
-                            var content = CreateEmailMessage(emailAddress, person, giftMessage);
-                            var testEnvelope = new Envelope(content);
-                            var emailSendStatus = emailer.Notify(testEnvelope).GetAwaiter().GetResult();
-                            if (!emailSendStatus.IsSuccess())
+                            // Using the Person object lookup email.
+                            var emailAddresses = emailAddressProvider.GetEmailAddresses(person);
+
+                            Console.WriteLine($"Attempting to email {person} using...");
+                            foreach (var emailAddress in emailAddresses)
                             {
-                                Console.WriteLine($"{emailAddress} Status: Error: {emailSendStatus.Message}");
+                                emailCount++;
+                                var content = CreateEmailMessage(emailAddress, person, giftMessage);
+                                var testEnvelope = new Envelope(content);
+                                var emailSendStatus = emailer.Notify(testEnvelope).GetAwaiter().GetResult();
+                                if (!emailSendStatus.IsSuccess())
+                                {
+                                    Console.WriteLine($"{emailAddress} Status: Error: {emailSendStatus.Message}");
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"{emailAddress} Status: Ok");
+                                }
                             }
-                            else
-                            {
-                                Console.WriteLine($"{emailAddress} Status: Ok");
-                            }
+                            Console.WriteLine(giftMessage);
                         }
-                        Console.WriteLine("");
-                        
-                        Console.WriteLine(giftMessage);
+
                     }
                 }
                 Console.WriteLine($"Sent {emailCount} for {family.Name}");
