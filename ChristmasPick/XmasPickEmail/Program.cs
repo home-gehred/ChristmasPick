@@ -40,7 +40,7 @@ namespace XmasPickEmail
                 PlainTextBody = plainTextMsg,
                 Name = "C",
                 NotificationType = NotifyType.Email,
-                Subject = "**IMPORTANT: Gehred Nation Christmas Pick Information**",
+                Subject = "IMPORTANT: Gehred Nation Christmas Pick Information Notification Attempt 3",
                 ToAddress = To
             };
             return content;
@@ -48,7 +48,7 @@ namespace XmasPickEmail
 
         static void Main(string[] args)
         {
-            var emailer = new SendGridNotifyPickIsAvalable("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");
+            var emailer = new SendGridNotifyPickIsAvalable("");
             DateTime christmasThisYear = new DateTime(2019, 12, 25);
             string adultArchivePath = @"C:\src\gehredproject\ChristmasPick\Archive\Adult\Archive.xml";
             string kidArchivePath = @"C:\src\gehredproject\ChristmasPick\Archive\Kids\Archive.xml";
