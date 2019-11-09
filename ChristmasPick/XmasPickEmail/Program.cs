@@ -48,7 +48,7 @@ namespace XmasPickEmail
 
         static void Main(string[] args)
         {
-            var emailer = new SendGridNotifyPickIsAvalable(""/*Use Secrets file*/);
+            var emailer = new SendGridNotifyPickIsAvalable("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");
             DateTime christmasThisYear = new DateTime(2019, 12, 25);
             string adultArchivePath = @"C:\src\gehredproject\ChristmasPick\Archive\Adult\Archive.xml";
             string kidArchivePath = @"C:\src\gehredproject\ChristmasPick\Archive\Kids\Archive.xml";
