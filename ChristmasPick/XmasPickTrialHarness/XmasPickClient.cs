@@ -10,14 +10,14 @@ namespace XmasPickTrialHarness
     {
         static void Main(string[] args)
         {
-                  DateTime christmasThisYear = new DateTime(2019, 12, 25);
-                  string adultArchivePath = @"C:\src\gehredproject\ChristmasPick\Archive\Adult\Archive.xml";
-                  string kidArchivePath = @"C:\src\gehredproject\ChristmasPick\Archive\Kids\Archive.xml";
-                  IXMasArchivePersister adultPersister = new FileArchivePersister(adultArchivePath);
+                  DateTime christmasThisYear = new DateTime(2020, 12, 25);
+            string adultArchivePath = @"/Users/cgehrer/Code/ChristmasPick/Archive/Adult/Archive.xml";
+            string kidArchivePath = @"/Users/cgehrer/Code/ChristmasPick/Archive/Kids/Archive.xml";
+            IXMasArchivePersister adultPersister = new FileArchivePersister(adultArchivePath);
                   IXMasArchivePersister kidPersister = new FileArchivePersister(kidArchivePath);
-                  IFamilyProvider familyProvider = new FileFamilyProvider(@"C:\src\gehredproject\ChristmasPick\Archive\Gehred\GehredFamily.xml");
-                  // Go ahead and get family
-                  FamilyTree gehredFamily = familyProvider.GetFamilies();
+            IFamilyProvider familyProvider = new FileFamilyProvider(@"/Users/cgehrer/Code/ChristmasPick/Archive/Gehred/GehredFamily.xml");
+            // Go ahead and get family
+            FamilyTree gehredFamily = familyProvider.GetFamilies();
                   XMasArchive adultArchive = adultPersister.LoadArchive();
                   XMasArchive kidArchive = kidPersister.LoadArchive();
                   // Create two poeple collections

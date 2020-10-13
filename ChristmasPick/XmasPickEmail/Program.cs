@@ -4,10 +4,8 @@ using ChristmasPickNotifier.Notifier.Email;
 using Common;
 using Common.ChristmasPickList;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using SecurityUtil.SecretsProvider;
 
 namespace XmasPickEmail
 {
@@ -15,21 +13,19 @@ namespace XmasPickEmail
     {
         static private PickAvailableMessage CreateEmailMessage(EmailAddress To, Person giftMaker, string pickMessage)
         {
-            var plainTextMsg = $"Hello {giftMaker},\r\n\r\n As you can see there are some new changes this year!\r\n Santa's Lil' Helper is yours truly, Uncle Bob.\r\n IMPORTANT: I am changing the notification process and I expect problems.\r\nPlease, Please, Please reply to this email that you got this notification, AND send an email to bagehred@sbcglobal.net\r\nThe response is important for me to keep track of how this new notification process is working.\r\n";
-            plainTextMsg += $"And as always, please notify family members you got your name for Christmas. Relay that, if they do not have a name, to get in touch with Uncle Bob.\r\n";
+            var plainTextMsg = $"Hello {giftMaker},\r\n\r\n I for one is looking forward to the end of the year 2020!\r\n Santa's Lil' Helper has been hard at work.\r\n IMPORTANT: I expect problems as this is the second time I have used this process.\r\nPlease, Please, Please reply to this email that you got this notification, AND send an email to bagehred@sbcglobal.net\r\nThe response is important for me to keep track of how this new notification process is working.\r\n";
+            plainTextMsg += $"And as always, notify family members you got your name for Christmas. Relay that, if they do not have a name, to get in touch with Uncle Bob. (bagehred@sbcglobal.net)\r\n";
             plainTextMsg += "\r\n";
             plainTextMsg += $"This maybe a duplicate, if you have responded already I apologize and disregard, otherwise get to it!\r\n";
             plainTextMsg += "\r\n";
             plainTextMsg += $"Alright, on to the fun stuff,\r\n";
-            plainTextMsg += "On the bright side, I have fixed a bug in the name picking program to make sure everyone gets a name they will find easy to make your $5 gift for.\r\n";
-            plainTextMsg += "Patti had a great suggestion for donating to a charity, the discussion on that will happen on Super Saturday.The name you need to supply a gift for is located at the end of this email.\r\n";
-            plainTextMsg += "Claire has been added to the numbers this year, so you maybe the lucky one to introduce her to the exhilaration of the $5 gift.\r\n";
+            plainTextMsg += "On the bright side, ...\r\n";
             plainTextMsg += "Important Dates:\r\n";
-            plainTextMsg += "Super Saturday: Nov. 30th after 2 pm dinner at 5 pm At Rick and Anne's";
+            plainTextMsg += "Super Saturday: Cancelled due to Covid-19";
             plainTextMsg += "\r\n";
-            plainTextMsg += "Christmas Sing - A - Long: Dec. 21st after 3 pm At Bob & Angie's\r\n";
+            plainTextMsg += "Christmas Sing - A - Long: Cancelled due to Covid-19\r\n";
             plainTextMsg += "\r\n";
-            plainTextMsg += "Gehred Nation Christmas: Dec. 28th 1-9 dinner 5:30 ish at Retzer Nature Center\r\n";
+            plainTextMsg += "Gehred Nation Christmas: Cancelled due to Covid-19\r\n";
             plainTextMsg += "\r\n";
             plainTextMsg += $"{pickMessage}";
             plainTextMsg += "\r\n";
@@ -40,7 +36,7 @@ namespace XmasPickEmail
                 PlainTextBody = plainTextMsg,
                 Name = "C",
                 NotificationType = NotifyType.Email,
-                Subject = "IMPORTANT: Gehred Nation Christmas Pick Information Notification Attempt 3",
+                Subject = "IMPORTANT: Gehred Nation Christmas Pick for 2020",
                 ToAddress = To
             };
             return content;
@@ -48,14 +44,17 @@ namespace XmasPickEmail
 
         static void Main(string[] args)
         {
-            var emailer = new SendGridNotifyPickIsAvalable("");
-            DateTime christmasThisYear = new DateTime(2019, 12, 25);
-            string adultArchivePath = @"C:\src\gehredproject\ChristmasPick\Archive\Adult\Archive.xml";
-            string kidArchivePath = @"C:\src\gehredproject\ChristmasPick\Archive\Kids\Archive.xml";
+            var secretsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "secrets.json");
+            var secretsProvider = new JsonFileProvider(secretsPath);
+            var sendGridApiKey = secretsProvider.GetSecret("sendgridApiKey");
+            var emailer = new SendGridNotifyPickIsAvalable(sendGridApiKey);
+            DateTime christmasThisYear = new DateTime(2020, 12, 25);
+            string adultArchivePath = @"/Users/cgehrer/Code/ChristmasPick/Archive/Adult/Archive.xml";
+            string kidArchivePath = @"/Users/cgehrer/Code/ChristmasPick/Archive/Kids/Archive.xml";
             IXMasArchivePersister adultPersister = new FileArchivePersister(adultArchivePath);
             IXMasArchivePersister kidPersister = new FileArchivePersister(kidArchivePath);
-            IFamilyProvider familyProvider = new FileFamilyProvider(@"C:\src\gehredproject\ChristmasPick\Archive\Gehred\GehredFamily.xml");
-            JsonFileEmailAddressProvider emailAddressProvider = new JsonFileEmailAddressProvider(@"C:\src\gehredproject\ChristmasPick\Archive\Gehred\GehredFamily_Contacts.json");
+            IFamilyProvider familyProvider = new FileFamilyProvider(@"/Users/cgehrer/Code/ChristmasPick/Archive/Gehred/GehredFamily.xml");
+            JsonFileEmailAddressProvider emailAddressProvider = new JsonFileEmailAddressProvider(@"/Users/cgehrer/Code/ChristmasPick/Archive/GehredFamily_Contacts.json");
 
             XMasArchive adultArchive = adultPersister.LoadArchive();
             XMasArchive kidArchive = kidPersister.LoadArchive();

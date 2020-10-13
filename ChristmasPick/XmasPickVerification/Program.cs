@@ -32,12 +32,12 @@ namespace XmasPickVerification
         static void Main(string[] args)
         {
             DateTime christmasThisYear = new DateTime(2019, 12, 25);
-            string adultArchivePath = @"C:\src\gehredproject\ChristmasPick\Archive\Adult\Archive.xml";
+            string adultArchivePath = @"/Users/cgehrer/Code/ChristmasPick/Archive/Adult/Archive.xml";
             IXMasArchivePersister adultPersister = new FileArchivePersister(adultArchivePath);
-            string kidArchivePath = @"C:\src\gehredproject\ChristmasPick\Archive\Kids\Archive.xml";
+            string kidArchivePath = @"/Users/cgehrer/Code/ChristmasPick/Archive/Kids/Archive.xml";
             IXMasArchivePersister kidPersister = new FileArchivePersister(kidArchivePath);
-           
-            IFamilyProvider familyProvider = new FileFamilyProvider(@"C:\src\gehredproject\ChristmasPick\Archive\Gehred\GehredFamily.xml");
+
+            IFamilyProvider familyProvider = new FileFamilyProvider(@"/Users/cgehrer/Code/ChristmasPick/Archive/Gehred/GehredFamily.xml");
             FamilyTree gehredFamily = familyProvider.GetFamilies();
 
             XMasArchive kidArchive = kidPersister.LoadArchive();
