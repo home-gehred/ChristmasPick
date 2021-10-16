@@ -8,7 +8,7 @@
     "Emails": [
       "mark.ingles86@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -19,7 +19,7 @@
     "Emails": [
       "aligehred@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -31,7 +31,7 @@
       "aligehred@gmail.com",
       "mark.ingles86@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -42,7 +42,7 @@
     "Emails": [
       "bagehred@sbcglobal.net"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -53,7 +53,7 @@
     "Emails": [
       "bagehred@sbcglobal.net", "ironmoose12@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -64,7 +64,7 @@
     "Emails": [
       "maxgehred@sbcglobal.net"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -75,7 +75,7 @@
     "Emails": [
       "cgehred@icloud.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -86,7 +86,7 @@
     "Emails": [
       "nforbaseball@yahoo.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -97,7 +97,7 @@
     "Emails": [
       "calliegehred@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -117,7 +117,7 @@
       "Birthday": "1995-10-10T00:00:00"
     },
     "Emails": [
-      "ngehred@wustl.edu"
+      "ngehred@ucla.edu"
     ],
     "ShouldBeContacted": true
   },
@@ -128,7 +128,7 @@
       "Birthday": "1995-10-10T00:00:00"
     },
     "Emails": [
-      "mgehred@wustl.edu"
+      "maria.gehred@duke.edu"
     ],
     "ShouldBeContacted": true
   },
@@ -141,7 +141,7 @@
     "Emails": [
       "beth.gehred@gmail.com", "egomaniacalmoi@hotmail.com", "bethgehred@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -152,7 +152,7 @@
     "Emails": [
       "dominogoc@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -163,7 +163,7 @@
     "Emails": [
       "calgoc@gmail.com", "calvingoc@hotmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -185,7 +185,7 @@
     "Emails": [
       "marzipantotoro@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -196,7 +196,7 @@
     "Emails": [
       "kgehred@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -207,7 +207,7 @@
     "Emails": [
       "lewis.savarese@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -240,7 +240,7 @@
     "Emails": [
       "npschultz85@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -251,7 +251,7 @@
     "Emails": [
       "amyschultz10@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -262,7 +262,7 @@
     "Emails": [
       "npschultz85@gmail.com", "amyschultz10@gmail.com" 
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -274,7 +274,7 @@
       "npschultz85@gmail.com",
       "amyschultz10@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -285,7 +285,7 @@
     "Emails": [
       "marmat1234@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -296,7 +296,7 @@
     "Emails": [
       "cmatranga2424@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -307,7 +307,7 @@
     "Emails": [
       "lgmatranga@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -329,7 +329,7 @@
     "Emails": [
       "nemogoc@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -340,7 +340,7 @@
     "Emails": [
       "stephanigoc@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -351,7 +351,7 @@
     "Emails": [
       "gehredp@gmail.com", "pgehred@hotmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -363,7 +363,7 @@
       "ragsn3@hotmail.com",
       "rpsvball@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -375,7 +375,7 @@
       "ragsn3@hotmail.com",
       "ragsn3@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -441,7 +441,7 @@
     "Emails": [
       "meggella2001@yahoo.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -463,7 +463,7 @@
     "Emails": [
       "meggella2001@yahoo.com", "dean.hoornaert@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -475,7 +475,7 @@
       "meggella2001@yahoo.com",
       "dean.hoornaert@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -486,7 +486,7 @@
     "Emails": [
       "tosagehredsja@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -497,7 +497,7 @@
     "Emails": [
       "tosagehreds@wi.rr.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   },
   {
     "Key": {
@@ -519,6 +519,6 @@
     "Emails": [
       "cgehred@gmail.com"
     ],
-    "ShouldBeContacted": true
+    "ShouldBeContacted": false
   }
 ]

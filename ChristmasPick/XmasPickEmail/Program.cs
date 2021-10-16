@@ -6,6 +6,7 @@ using Common.ChristmasPickList;
 using System;
 using System.IO;
 using SecurityUtil.SecretsProvider;
+using ChristmasPickNotifier.Notifier;
 
 namespace XmasPickEmail
 {
@@ -13,24 +14,50 @@ namespace XmasPickEmail
     {
         static private PickAvailableMessage CreateEmailMessage(EmailAddress To, Person giftMaker, string pickMessage)
         {
-            var plainTextMsg = $"Hello {giftMaker},\r\n\r\n I for one is looking forward to the end of the year 2020!\r\n Santa's Lil' Helper has been hard at work.\r\n IMPORTANT: I expect problems as this is the second time I have used this process.\r\nPlease, Please, Please reply to this email that you got this notification, AND send an email to bagehred@sbcglobal.net\r\nThe response is important for me to keep track of how this new notification process is working.\r\n";
-            plainTextMsg += $"And as always, notify family members you got your name for Christmas. Relay that, if they do not have a name, to get in touch with Uncle Bob. (bagehred@sbcglobal.net)\r\n";
-            plainTextMsg += "\r\n";
-            plainTextMsg += $"This maybe a duplicate, if you have responded already I apologize and disregard, otherwise get to it!\r\n";
-            plainTextMsg += "\r\n";
-            plainTextMsg += $"Alright, on to the fun stuff,\r\n";
-            plainTextMsg += "On the bright side, ...\r\n";
-            plainTextMsg += "Important Dates:\r\n";
-            plainTextMsg += "Super Saturday: Cancelled due to Covid-19";
-            plainTextMsg += "\r\n";
-            plainTextMsg += "Christmas Sing - A - Long: Cancelled due to Covid-19\r\n";
-            plainTextMsg += "\r\n";
-            plainTextMsg += "Gehred Nation Christmas: Cancelled due to Covid-19\r\n";
-            plainTextMsg += "\r\n";
-            plainTextMsg += $"{pickMessage}";
-            plainTextMsg += "\r\n";
-            var htmlMsg = plainTextMsg.Replace("\r\n", "</br>");
-            var content = new PickAvailableMessage
+            var plainTextMsg = $@"Merry Christmas {giftMaker},
+[[newline]]
+IMPORTANT: I expect problems as this is the second time I have used the automatic email process. Please, Please, Please reply to this email that you got this notification, AND send an email to bagehred@sbcglobal.net
+[[newline]]
+The response is important for me to keep track of how this new notification process is working.
+And as always, notify family members you got your name for Christmas. Relay that, if they do not have a name, to get in touch with Uncle Bob. (bagehred@sbcglobal.net)
+[[newline]]
+This could be duplicate email, if you have responded already I apologize and disregard, otherwise please read on.
+[[newline]]
+I for one am happy that 2020 is coming to an end! What a year.
+I truly hope this letter finds you safe, healthy and doing well.
+As acting Supreme Master Overlord of Christmas we are allowing you {giftMaker} a choice,
+you may either make a donation of $10 to a charity or your choice on behalf of the recipient
+or you may stick with the standard $5 gift.
+(Except for the person who has to buy Uncle Bob a present, that person is expected to have a $5.50 gift delivered in the mail to <<4959 N Idlewild Ave>>  in time for him to open on Christmas day.)
+[[newline]]
+In either case you must be sure that your person will have “something” to open by Christmas day.
+A more with it Supreme Master Overlord of Christmas should have sent this earlier knowing that USPS is under some stress,
+but tradition is tradition and emails come out the weekend of trick-or-treat.
+[[newline]]
+Sadly, my favorite part of Christmas, getting together with the whole family is not going to happen this year.
+I will drown my sorrows in a half gallon of Egg Nog.
+[[newline]]
+For those of you that are a lucky enough to buy a present for anyone in the Hoorneart family;
+they will be in Wisconsin Dec. 25th to Dec 31st, I’m hoping during the holidays we can do some
+social distant gatherings in small groups in the hopes of seeing everyone that way.
+[[newline]]
+Love,
+[[newline]]
+Supreme Master Overlord of Christmas a.k.a Bob
+[[newline]]       
+Important Dates:
+[[newline]]
+Super Saturday: Cancelled due to Covid-19
+[[newline]]
+Christmas Sing - A - Long: Cancelled due to Covid-19
+[[newline]]
+Gehred Nation Christmas: Cancelled due to Covid-19
+[[newline]]
+{pickMessage}";
+            var htmlMsg = plainTextMsg.Replace("[[newline]]", "<p>");
+            htmlMsg = htmlMsg.Replace("\n", string.Empty);
+            plainTextMsg = plainTextMsg.Replace("[[newline]]", string.Empty);
+             var content = new PickAvailableMessage
             {
                 HtmlBody = $"<!DOCTYPE html><html><body>{htmlMsg}</body></html> ",
                 PlainTextBody = plainTextMsg,
@@ -89,6 +116,7 @@ namespace XmasPickEmail
                                 var content = CreateEmailMessage(emailAddress, person, giftMessage);
                                 var testEnvelope = new Envelope(content);
                                 var emailSendStatus = emailer.Notify(testEnvelope).GetAwaiter().GetResult();
+                                //var emailSendStatus = NotifierResultFactory.CreateFailed("Just testing");
                                 if (!emailSendStatus.IsSuccess())
                                 {
                                     Console.WriteLine($"{emailAddress} Status: Error: {emailSendStatus.Message}");
@@ -119,6 +147,7 @@ namespace XmasPickEmail
                                 var content = CreateEmailMessage(emailAddress, person, giftMessage);
                                 var testEnvelope = new Envelope(content);
                                 var emailSendStatus = emailer.Notify(testEnvelope).GetAwaiter().GetResult();
+                                //var emailSendStatus = NotifierResultFactory.CreateFailed("Just testing");
                                 if (!emailSendStatus.IsSuccess())
                                 {
                                     Console.WriteLine($"{emailAddress} Status: Error: {emailSendStatus.Message}");
