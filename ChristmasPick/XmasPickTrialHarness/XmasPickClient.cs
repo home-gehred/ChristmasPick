@@ -10,21 +10,21 @@ namespace XmasPickTrialHarness
     {
         static void Main(string[] args)
         {
-                  DateTime christmasThisYear = new DateTime(2020, 12, 25);
+                  DateTime christmasThisYear = new DateTime(2021, 12, 25);
             string adultArchivePath = @"/Users/cgehrer/Code/ChristmasPick/Archive/Adult/Archive.xml";
             string kidArchivePath = @"/Users/cgehrer/Code/ChristmasPick/Archive/Kids/Archive.xml";
             IXMasArchivePersister adultPersister = new FileArchivePersister(adultArchivePath);
-                  IXMasArchivePersister kidPersister = new FileArchivePersister(kidArchivePath);
+            IXMasArchivePersister kidPersister = new FileArchivePersister(kidArchivePath);
             IFamilyProvider familyProvider = new FileFamilyProvider(@"/Users/cgehrer/Code/ChristmasPick/Archive/Gehred/GehredFamily.xml");
             // Go ahead and get family
             FamilyTree gehredFamily = familyProvider.GetFamilies();
                   XMasArchive adultArchive = adultPersister.LoadArchive();
                   XMasArchive kidArchive = kidPersister.LoadArchive();
-                  // Create two poeple collections
+                  // Create two people collections
                   PersonCollection kidList = gehredFamily.CreateChristmasKidList(christmasThisYear);
                   PersonCollection adultList = gehredFamily.CreateChristmasAdultList(christmasThisYear);
 
-                  IPickListRuleProvider kidRules = new KidListRuleProvider(gehredFamily, kidArchive, 1);
+                  IPickListRuleProvider kidRules = new KidListRuleProvider(gehredFamily, kidArchive, years:1);
                   IPickListService picker = new PickListServiceAdvanced(new RandomNumberGenerator(kidList.Count), kidRules, kidList);
                   XMasPickList kidPicklist = picker.CreateChristmasPick(christmasThisYear);
                   XMasPickListValidator validation = new XMasPickListValidator();
@@ -47,7 +47,7 @@ namespace XmasPickTrialHarness
                   }
 
 
-                  IPickListRuleProvider adultRules = new AdultListRuleProvider(gehredFamily, adultArchive, 5);
+                  IPickListRuleProvider adultRules = new AdultListRuleProvider(gehredFamily, adultArchive, years:5);
                   IPickListService adultPicker = new PickListServiceAdvanced(new RandomNumberGenerator(adultList.Count), adultRules, adultList);
                   XMasPickList adultPickList = adultPicker.CreateChristmasPick(christmasThisYear);
 

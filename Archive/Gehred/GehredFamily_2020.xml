@@ -47,7 +47,6 @@
     <Children>
       <Person firstname="Maddy" lastname="Gehred" birthday="11/7/1991" id="6279C11D-5DFD-464A-BC52-444283970FD6"/>
       <Person firstname="Cecilia" lastname="Gehred" birthday="10/7/1993" id="BCF99C36-5A98-4AD7-9D9C-2F12C896A32A"/>
-      <Person firstname="Michael" lastname="Thorpe" birthday="11/16/1993" id="37697fcc-279d-41de-ab9b-ed1f9087b528"/>
     </Children>
   </Family>
   <Family>
@@ -61,20 +60,12 @@
     </Children>
   </Family>
   <Family>
-    <FamilyName>Domi and Gideon Family</FamilyName>
-    <Parents>
-      <Person firstname="Domino" lastname="Gehred" birthday="9/27/1989" id="0017DE43-82C0-40A6-ABB6-FC881581B9FD"/>
-      <Person firstname="Gideon" lastname="Akinbolude" birthday="3/16/1989" id="46ddca75-5211-419c-813c-29f4b2455e97"/>
-    </Parents>
-    <Children>
-    </Children>
-  </Family>
-  <Family>
     <FamilyName>Fort Atkinson Gehreds</FamilyName>
     <Parents>
       <Person firstname="Beth" lastname="Gehred" birthday="7/11/1965" id="9F5AB8DB-4EA2-45C3-8709-93A12A2F9B6B"/>
     </Parents>
     <Children>
+      <Person firstname="Domino" lastname="Gehred" birthday="9/27/1989" id="0017DE43-82C0-40A6-ABB6-FC881581B9FD"/>
       <Person firstname="Calvin" lastname="Gehred" birthday="6/26/1992" id="278EC835-52FF-4B33-A6B6-BF5FC2539D65"/>
       <Person firstname="Claire" lastname="Tseng" birthday="7/11/1992" id="F789F54E-52BB-41E3-A44B-E8C7961726DD"/>
       <Person firstname="Capri" lastname="Gehred" birthday="3/17/1997" id="BCFADDD9-A008-4E5F-93BC-B483E6C7CA8C"/>
@@ -130,7 +121,6 @@
     </Parents>
     <Children>
       <Person firstname="Rhys" lastname="Ingles" birthday="5/11/2017" id="cc6f6dfc-8886-4887-a05a-f50bdd3108cb"/>
-      <Person firstname="Harriet" lastname="Ingles" birthday="3/19/2019" id="2abf5cf2-f444-48df-aeeb-8e7dc084c136"/>
     </Children>
   </Family>
   <Family>
@@ -145,11 +135,10 @@
   <Family>
     <FamilyName>Katie and Lewis </FamilyName>
     <Parents>
-      <Person firstname="Katy" lastname="Savarese-Gehred" birthday="7/31/1988" id="FAD0FB10-54CA-4625-B3E4-1F13CF02A19A"/>
-      <Person firstname="Lewis" lastname="Savarese-Gehred" birthday="7/31/1988" id="4BD7EB9A-9EB1-46F9-A3BC-A1EBD13C51A1"/>
+      <Person firstname="Katy" lastname="Gehred" birthday="7/31/1988" id="FAD0FB10-54CA-4625-B3E4-1F13CF02A19A"/>
+      <Person firstname="Lewis" lastname="Savarese" birthday="7/31/1988" id="4BD7EB9A-9EB1-46F9-A3BC-A1EBD13C51A1"/>
     </Parents>
     <Children>
-      <Person firstname="Owen" lastname="Savarese-Gehred" birthday="7/14/2021" id="091f01e4-4560-42f2-b643-b0c93d307cfc"/>
     </Children>
   </Family>
   <Family>
